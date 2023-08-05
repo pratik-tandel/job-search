@@ -7,6 +7,7 @@ import {
     ScrollView,
     ActivityIndicator,
     RefreshControl,
+    Share,
 } from "react-native";
 
 import {
@@ -83,7 +84,12 @@ const JobDetails = () => {
                         />
                     ),
                     headerRight: () => (
-                        <ScreenHeaderBtn iconUrl={icons.share} dimension='60%' />
+                        <ScreenHeaderBtn iconUrl={icons.share} dimension='60%' handlePress={() => {
+                            Share.share({
+                                message:
+                                    `Apply for Job \n${data[0].job_title} in ${data[0].employer_name} located in ${data[0].job_country} \nApply Now: ${data[0]?.job_google_link}`
+                            });
+                        }} />
                     ),
                     headerTitle: "",
                 }}
